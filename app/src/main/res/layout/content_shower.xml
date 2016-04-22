@@ -31,8 +31,7 @@
         android:orientation="horizontal">
         <maurobocanegra.easypays.CustomViews.PieChart
             android:id="@+id/pieChart1"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="#FFF"/>
         <!--

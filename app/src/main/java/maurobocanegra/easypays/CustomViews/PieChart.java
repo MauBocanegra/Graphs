@@ -62,7 +62,7 @@ public class PieChart extends View {
         if(hasInit) {
             for(int i=0; i<paintPaths.length; i++){
                 //if(contPathLengths[i]<guidePathMeasures[i].getLength())
-                canvas.drawPath(guidePaths[i], paints[i]);
+                //canvas.drawPath(guidePaths[i], paints[i]);
                 canvas.drawPath(paintPaths[i],paints[i]);
                 /*
                 else{
@@ -82,7 +82,7 @@ public class PieChart extends View {
             thisView.invalidate();
             updateState();
             if(notPainting<=vals.length) {
-                viewHandler.postDelayed(updateView, 15l);
+                viewHandler.postDelayed(updateView, 5l);
             }else{
                 Log.d("debug","threadStopped");
             }
@@ -113,7 +113,6 @@ public class PieChart extends View {
             paints[i].setStyle(Paint.Style.STROKE);
             paints[i].setColor(ContextCompat.getColor(getContext(), colors[i]));
             paints[i].setStrokeWidth(5);
-            paints[i].setShadowLayer(5, 0, 10, 0x80000000);
             paints[i].setStyle(Paint.Style.STROKE);
         }
         /*
@@ -133,12 +132,14 @@ public class PieChart extends View {
             init();
 
         for(int i=0; i<vals.length; i++){
-            contPathLengths[i]+=5.0f;
+            contPathLengths[i]+=3.0f;
 
-            float[] pos = new float[]{0.0f,0.0f};
-            paintPaths[i].moveTo(getWidth() / 2, getHeight() / 2);
-            guidePathMeasures[i].getPosTan(contPathLengths[i], pos, null);
-            paintPaths[i].lineTo(pos[0], pos[1]);
+            if(contPathLengths[i]<=guidePathMeasures[i].getLength()) {
+                float[] pos = new float[]{0.0f, 0.0f};
+                paintPaths[i].moveTo(getWidth() / 2, getHeight() / 2);
+                guidePathMeasures[i].getPosTan(contPathLengths[i], pos, null);
+                paintPaths[i].lineTo(pos[0], pos[1]);
+            }
         }
         //Log.d("debug","stillUpdating");
 
