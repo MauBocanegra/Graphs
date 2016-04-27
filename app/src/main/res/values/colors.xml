@@ -7,4 +7,6 @@
     <color name="Red500">#F44336</color>
     <color name="Purple500">#9C27B0</color>
     <color name="Cyan500">#26C6DA</color>
+
+    <color name="WhiteMaterial">#FFFFFF</color>
 </resources>

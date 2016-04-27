@@ -29,15 +29,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <maurobocanegra.easypays.CustomViews.PieChart
-            android:id="@+id/pieChart1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#FFF"/>
-        <!--
+        <maurobocanegra.easypays.CustomViews.PerceCard
+            android:id="@+id/percentageView"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
         <Space
             android:layout_width="10dp"
             android:layout_height="wrap_content" />
+
+        <maurobocanegra.easypays.CustomViews.PerceCard
+            android:id="@+id/percentageView2"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+
+            android:layout_height="100dp"/>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <maurobocanegra.easypays.CustomViews.PerceCard
+            android:id="@+id/percentageView3"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+
+        <!--
 
         <maurobocanegra.easypays.CustomViews.PieChart
             android:id="@+id/pieChart2"
