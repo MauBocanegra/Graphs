@@ -15,6 +15,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import maurobocanegra.easypays.R;
@@ -50,17 +51,31 @@ public class PerceCard extends View {
     int[] vals={75};
     int[] colors={R.color.Cyan500};
 
+    TextView textView;
+    boolean textMoved=false;
+
     public PerceCard(Context context, AttributeSet attrs){
         super(context, attrs);
         thisView = this;
+    }
+
+    public void setTextView(TextView tv){textView=tv;}
+
+    public void setData(int[] values){
+        vals=values;
+    }
+
+    public void setColors(int[] colorsArr){
+        colors=colorsArr;
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         Log.d("debug","threadStopped");
-        Log.d("debug","padding="+((getWidth()/3)-(getWidth()/5)));
+        Log.d("debug", "padding=" + ((getWidth() / 3) - (getWidth() / 5)));
         padding=((getWidth()/3)-(getWidth()/5));
+
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         viewHandler.post(updateView);
     }
@@ -184,6 +199,18 @@ public class PerceCard extends View {
 
         if(!hasInit)
             init();
+
+        if(textView!=null && !textMoved && hasInit) {
+            textView.animate()
+                    .x(textView.getX() + padding*2)
+                    .y(textView.getY() - padding)
+                    .setDuration(0)
+                    .start();
+            textMoved=true;
+
+            textView.setTextSize((padding*10)/25);
+            textView.setText(""+vals[0]+"%");
+        }
 
         for(int i=0; i<vals.length; i++){
             contPathLengths[i]+=incrementGuidePaths[i];
